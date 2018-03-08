@@ -220,26 +220,57 @@
   
   /*Load data file and initialize coordinates*/
 
-  var sql = new cartodb.SQL({ user: 'antievictionmappingproject', format: 'geojson'});
+//   var sql = new cartodb.SQL({ user: 'antievictionmappingproject', format: 'geojson'});
  
-    /*Load from CartoDB database*/
-    sql.execute("SELECT the_geom, date_filed, units, address_1 FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY date_filed DESC", {table_name: 'ellis_with_address_count'})
- /* var sql = new cartodb.SQL({ user: 'ojack', format: 'geojson'});
+//     /*Load from CartoDB database*/
+//     sql.execute("SELECT the_geom, date_filed, units, address_1 FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY date_filed DESC", {table_name: 'ellis_with_address_count'})
+//  /* var sql = new cartodb.SQL({ user: 'ojack', format: 'geojson'});
  
-    /*Load from CartoDB database*
-    sql.execute("SELECT the_geom, date_filed,address FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY date_filed DESC", {table_name: 'sf_ellis_petitions'})*/
-      .done(function(collection) {
-        var cumEvictions = 3709;//total number of evictions
-        maxTime =  Date.parse(collection.features[0].properties.date_filed);
-        console.log(maxTime);
-        collection.features.forEach(function(d) {
-//       d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
-      d.LatLng = new L.LatLng(42.3601, -71.0589);
+//     /*Load from CartoDB database*
+//     sql.execute("SELECT the_geom, date_filed,address FROM {{table_name}} WHERE the_geom IS NOT NULL ORDER BY date_filed DESC", {table_name: 'sf_ellis_petitions'})*/
+//       .done(function(collection) {
+//         var cumEvictions = 3709;//total number of evictions
+//         maxTime =  Date.parse(collection.features[0].properties.date_filed);
+//         console.log(maxTime);
+//         collection.features.forEach(function(d) {
+// //       d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
+//       d.LatLng = new L.LatLng(42.3601, -71.0589);
 
-      cumEvictions -= d.properties.units;
+//       cumEvictions -= d.properties.units;
+//       d.totalEvictions = cumEvictions;
+//       console.log(d.properties.date_filed + " with " + d.totalEvictions);
+//     });
+
+     d3.json("sf_ellis_petitions.json", function(collection) {
+
+         var cumEvictions = 3709;//total number of evictions
+        maxTime =  Date.parse(collection.features[0].properties.date_filed);
+
+
+      collection.features.forEach(function(d) {
+
+//          d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
+
+          var lo = parseFloat("42.2" + d.geometry.coordinates[1].toString().split(".")[1].slice( 1 ))
+//          var lox = parseFloat("42.1" + d.geometry.coordinates[1].toString().split(".")[1])
+          var la = parseFloat("-71.1" + d.geometry.coordinates[0].toString().split(".")[1].slice( 1 ))
+//          var lax = parseFloat("-71.1" + d.geometry.coordinates[0].toString().split(".")[1])
+          console.log(d.geometry.coordinates[1].toString().replace("37.", "42."))
+          var lon = parseFloat(d.geometry.coordinates[1].toString().replace("37.", "42."))
+          var lat = parseFloat(d.geometry.coordinates[0].toString().replace("122.", "71."))
+          console.log(d.geometry.coordinates[0].toString().replace("122.", "71."))
+//          d.LatLng = new L.LatLng(42.3601, -71.0589);
+          d.LatLng = new L.LatLng(lo, la);
+//          d.LatLng = new L.LatLng(lo, lax);
+//          d.LatLng = new L.LatLng(lox, lax);
+
+
+      cumEvictions -= 3;
       d.totalEvictions = cumEvictions;
-      console.log(d.properties.date_filed + " with " + d.totalEvictions);
-    });
+
+    })
+
+
 
     /*Load from local file*/
    /*  d3.json("sf_ellis_petitions.json", function(collection) {
