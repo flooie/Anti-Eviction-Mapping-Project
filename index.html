@@ -233,7 +233,9 @@
         maxTime =  Date.parse(collection.features[0].properties.date_filed);
         console.log(maxTime);
         collection.features.forEach(function(d) {
-      d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
+//       d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
+      d.LatLng = new L.LatLng(42.3601, -71.0589);
+
       cumEvictions -= d.properties.units;
       d.totalEvictions = cumEvictions;
       console.log(d.properties.date_filed + " with " + d.totalEvictions);
