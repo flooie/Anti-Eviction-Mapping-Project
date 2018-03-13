@@ -282,16 +282,16 @@
 
 //          d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
 
-          var lo = parseFloat("42.2" + d.geometry.coordinates[1].toString().split(".")[1].slice( 1 ))
-//          var lox = parseFloat("42.1" + d.geometry.coordinates[1].toString().split(".")[1])
-          var la = parseFloat("-71.1" + d.geometry.coordinates[0].toString().split(".")[1].slice( 1 ))
-//          var lax = parseFloat("-71.1" + d.geometry.coordinates[0].toString().split(".")[1])
-          console.log(d.geometry.coordinates[1].toString().replace("37.", "42."))
-          var lon = parseFloat(d.geometry.coordinates[1].toString().replace("37.", "42."))
-          var lat = parseFloat(d.geometry.coordinates[0].toString().replace("122.", "71."))
-          console.log(d.geometry.coordinates[0].toString().replace("122.", "71."))
-//          d.LatLng = new L.LatLng(42.3601, -71.0589);
-          d.LatLng = new L.LatLng(lo, la);
+//           var lo = parseFloat("42.2" + d.geometry.coordinates[1].toString().split(".")[1].slice( 1 ))
+// //          var lox = parseFloat("42.1" + d.geometry.coordinates[1].toString().split(".")[1])
+//           var la = parseFloat("-71.1" + d.geometry.coordinates[0].toString().split(".")[1].slice( 1 ))
+// //          var lax = parseFloat("-71.1" + d.geometry.coordinates[0].toString().split(".")[1])
+//           console.log(d.geometry.coordinates[1].toString().replace("37.", "42."))
+//           var lon = parseFloat(d.geometry.coordinates[1].toString().replace("37.", "42."))
+//           var lat = parseFloat(d.geometry.coordinates[0].toString().replace("122.", "71."))
+//           console.log(d.geometry.coordinates[0].toString().replace("122.", "71."))
+         d.LatLng = new L.LatLng(42.3601, -71.0589);
+//           d.LatLng = new L.LatLng(lo, la);
 //          d.LatLng = new L.LatLng(lo, lax);
 //          d.LatLng = new L.LatLng(lox, lax);
 
